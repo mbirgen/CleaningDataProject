@@ -1,13 +1,24 @@
-## Load data from computer into a variety of tables.
-subject_train <-read.table("./data/train/subject_train.txt")
-subject_test <-read.table("./data/test/subject_test.txt")
-train  <-read.table("./data/train/X_train.txt")
-test <- read.table("./data/test/X_test.txt")
-label_train  <-read.table("./data/train/y_train.txt")
-label_test <- read.table("./data/test/y_test.txt")
+if(!file.exists("./Datasetzp")){
+  dir.create("./Datasetzp")
+  
+  
+  file.url <- ("https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip")
+  download.file(file.url,"Datasetzp.zip")
+}
+if(!file.exists("UCI HAR Dataset")){
+  unzip("Datasetzp.zip")
+}
 
-features <- read.table("./data/features.txt")
-activities <- read.table("./data/activity_labels.txt")
+## Load data from computer into a variety of tables.
+subject_train <-read.table("./UCI HAR Dataset/train/subject_train.txt")
+subject_test <-read.table("./UCI HAR Dataset/test/subject_test.txt")
+train  <-read.table("./UCI HAR Dataset/train/X_train.txt")
+test <- read.table("./UCI HAR Dataset/test/X_test.txt")
+label_train  <-read.table("./UCI HAR Dataset/train/y_train.txt")
+label_test <- read.table("./UCI HAR Dataset/test/y_test.txt")
+
+features <- read.table("./UCI HAR Dataset/features.txt")
+activities <- read.table("./UCI HAR Dataset/activity_labels.txt")
 
 ## Add names to column names, and add activities and subjects to data.frames
 ## in both train and test
